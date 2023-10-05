@@ -1,39 +1,40 @@
 <?php
 function sequence($n){
-    function init($n){
-        $text="";
+    function init($n): string
+    {
+        $line1="";
         if ($n >= 0) {
-            $text=$text."1";
+            $line1=$line1."1";
         }
-        return $text;
+        return $line1;
     }
+    $text=init($n);
 
-    function counter($text){
+    function counter($text): string
+    {
+        $count=1;
+        $full_count="";
         for ($i = 1; $i<strlen($text);$i++){
-            $count=1;
-            while($text[$i]==$text[$i-1])
+            if ($text[$i]==$text[$i-1]){
                 $count++;
-            endwhile return $count;
-
-
-        else
+            }
+            $full_count=$full_count.$count;
         }
+        return $full_count;
     }
 
-    for($i=0;$i<=$n;$i++){
-
-        if ($i>0){
-            for ($j=1;$j<strlen($text);$j++)
-            $count=1;
-                if ($text[$j]!=$text[$j-1])
-                    echo $count;
-                else
-                    $text=$text.$total;
-
-            echo "$text \n\r";
-        }
+    function line2($text,$full_count): string
+    {
+        $line="";
+        for ($j=0; $j<strlen($full_count); $j++)
+            $line=$line.$line.$full_count[$j].$text[$full_count[$j]-2];
+        return $line;
     }
+
+
+    $rend=init($n)."\n\r".line2("21",counter("21"));
+    echo $rend;
 
 }
 
-sequence(1);
+sequence(2);
